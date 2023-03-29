@@ -33,18 +33,18 @@ docker run -d --name=influxdb2 --net=host \
 
 To load a dashboard, go to your grafana homepage and select "dashboards -> import" in the menu.
 
-![](./import_db_1.png)
+![](./doc/import_db_1.png)
 
 Select the json to upload from your computer or copy the json content to the text area.
 
-![](./import_db_2.png)
+![](./doc/import_db_2.png)
 
 Select the database to which vtelemetry sends its data and click "import".
 
-![](./import_db_3.png)
+![](./doc/import_db_3.png)
 
 The dashboard is loading afterwards and should be presented to you.
 
-![](./import_db_4.png)
+![](./doc/import_db_4.png)
 
 More information on [Grafana - Manage Dashboards](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
