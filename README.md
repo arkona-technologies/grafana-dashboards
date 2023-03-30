@@ -1,6 +1,7 @@
 # grafana-dashboards
 
-This repository contains a set of shareable grafana dashboards, showing data collected by v//telemetry. The dashboards include reusable grafana library panels.
+This repository contains a set of shareable grafana dashboards, visualizing data collected by `v//telemetry`. 
+These dashboards include reusable grafana library panels for you to create your own custom dashboards based on your demands.
 
 ## Requirements
 
@@ -8,9 +9,9 @@ This repository contains a set of shareable grafana dashboards, showing data col
 - [Grafana](https://grafana.com/grafana/download)
 - [InfluxDB](https://docs.influxdata.com/influxdb/v2.6/install/)
 
-For further information of the setup process, read the chapter "monitoring" of our [quick start guide](https://www.dropbox.com/home/Public%20Downloads/VM/Guides/QuickStartGuide?preview=Quick_Start_Guide.pdf)
+For further information on the setup process, read the chapter "monitoring" of our [quick start guide](https://www.dropbox.com/home/Public%20Downloads/VM/Guides/QuickStartGuide?preview=Quick_Start_Guide.pdf)
 
-For best compatibility, install the latest influxdb with ["dbrp mapping"](https://docs.influxdata.com/influxdb/cloud/query-data/influxql/dbrp/), with which you can use both flux and also influxQL.
+For best compatibility, install the latest influxdb with ["dbrp mapping"](https://docs.influxdata.com/influxdb/cloud/query-data/influxql/dbrp/), which allows you to use both flux and also influxQL.
 For a quick setup with influx running as a container, you can set it up with automatic dbrp mapping by setting following environment variables:
 
 ```
@@ -35,7 +36,7 @@ To load a dashboard, go to your grafana homepage and select "dashboards -> impor
 
 ![](./doc/import_db_1.png)
 
-Select the json to upload from your computer or copy the json content to the text area.
+Select the json file to upload from your computer or copy the json content to the text area.
 
 ![](./doc/import_db_2.png)
 
@@ -43,7 +44,7 @@ Select the database to which vtelemetry sends its data and click "import".
 
 ![](./doc/import_db_3.png)
 
-The dashboard is loading afterwards and should be presented to you.
+Upon successful import, the dashboard should load data and be presented to you.
 
 ![](./doc/import_db_4.png)
 
