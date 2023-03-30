@@ -1,4 +1,4 @@
-# grafana
+# grafana-dashboards
 
 This repository contains a set of shareable grafana dashboards, showing data collected by v//telemetry. The dashboards include reusable grafana library panels.
 
