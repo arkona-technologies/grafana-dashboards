@@ -181,7 +181,7 @@
 						"alias": "$tag_ip $tag_video_transmitters",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{

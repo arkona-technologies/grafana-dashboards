@@ -68,7 +68,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -167,7 +167,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -271,7 +271,7 @@
 						"alias": "CE",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -317,7 +317,7 @@
 						"alias": "UE",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -420,7 +420,7 @@
 						"alias": "FPGA",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [],
 						"hide": false,
@@ -551,7 +551,7 @@
 					{
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -653,7 +653,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -763,7 +763,7 @@
 					{
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -870,7 +870,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -978,7 +978,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1123,7 +1123,7 @@
 					{
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1255,7 +1255,7 @@
 					{
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1417,7 +1417,7 @@
 					{
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1548,7 +1548,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1683,7 +1683,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1821,7 +1821,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -1944,7 +1944,7 @@
 			"collapsed": false,
 			"datasource": {
 				"type": "influxdb",
-				"uid": "xk_4-MKVk"
+				"uid": "${DS_BLADERUNNER}"
 			},
 			"gridPos": {
 				"h": 1,
@@ -1958,7 +1958,7 @@
 				{
 					"datasource": {
 						"type": "influxdb",
-						"uid": "xk_4-MKVk"
+						"uid": "${DS_BLADERUNNER}"
 					},
 					"refId": "A"
 				}
@@ -2180,7 +2180,7 @@
 			"collapsed": false,
 			"datasource": {
 				"type": "influxdb",
-				"uid": "xk_4-MKVk"
+				"uid": "${DS_BLADERUNNER}"
 			},
 			"gridPos": {
 				"h": 1,
@@ -2194,7 +2194,7 @@
 				{
 					"datasource": {
 						"type": "influxdb",
-						"uid": "xk_4-MKVk"
+						"uid": "${DS_BLADERUNNER}"
 					},
 					"refId": "A"
 				}
@@ -2245,7 +2245,7 @@
 			"collapsed": true,
 			"datasource": {
 				"type": "influxdb",
-				"uid": "xk_4-MKVk"
+				"uid": "${DS_BLADERUNNER}"
 			},
 			"gridPos": {
 				"h": 1,
@@ -2288,7 +2288,7 @@
 				{
 					"datasource": {
 						"type": "influxdb",
-						"uid": "xk_4-MKVk"
+						"uid": "${DS_BLADERUNNER}"
 					},
 					"refId": "A"
 				}
@@ -2300,7 +2300,7 @@
 			"collapsed": true,
 			"datasource": {
 				"type": "influxdb",
-				"uid": "xk_4-MKVk"
+				"uid": "${DS_BLADERUNNER}"
 			},
 			"gridPos": {
 				"h": 1,
@@ -2632,7 +2632,7 @@
 				{
 					"datasource": {
 						"type": "influxdb",
-						"uid": "xk_4-MKVk"
+						"uid": "${DS_BLADERUNNER}"
 					},
 					"refId": "A"
 				}

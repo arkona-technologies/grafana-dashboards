@@ -75,7 +75,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -190,7 +190,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -304,7 +304,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -342,7 +342,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -384,7 +384,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -494,7 +494,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -595,7 +595,7 @@
 						"alias": "$tag_ip",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{

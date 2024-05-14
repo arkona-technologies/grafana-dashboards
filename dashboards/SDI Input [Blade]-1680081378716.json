@@ -67,7 +67,7 @@
 						"alias": "input #$tag_input",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -157,7 +157,7 @@
 						"alias": "SDI Input #$tag_input",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
@@ -318,7 +318,7 @@
 						"alias": "SDI Input#$tag_input",
 						"datasource": {
 							"type": "influxdb",
-							"uid": "xk_4-MKVk"
+							"uid": "${DS_BLADERUNNER}"
 						},
 						"groupBy": [
 							{
