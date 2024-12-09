@@ -9,7 +9,8 @@ These dashboards include reusable grafana library panels for you to create your 
 - [Grafana](https://grafana.com/grafana/download)
 - [InfluxDB](https://docs.influxdata.com/influxdb/v2.6/install/)
 
-For further information on the setup process, read the chapter "monitoring" of our [quick start guide](https://www.dropbox.com/home/Public%20Downloads/VM/Guides/QuickStartGuide?preview=Quick_Start_Guide.pdf)
+For further information on the setup process, read the chapter "monitoring" of our [quick start guide](https://www.dropbox.com/home/Public%20Downloads/VM/Guides/QuickStartGuide?preview=Quick_Start_Guide.pdf) or go to [telemetry template](https://github.com/arkona-technologies/telemetry-template) for our simple full stack setup.
+> The telemetry template setup already contains the same dashboards of this repository and also some BLADE//runner related graphics. Go to [telemetry-template#features](https://github.com/arkona-technologies/telemetry-template#a-brief-excerpt-of-features) to see how to copy those images to your grafana container
 
 For best compatibility, install the latest influxdb with ["dbrp mapping"](https://docs.influxdata.com/influxdb/cloud/query-data/influxql/dbrp/), which allows you to use both flux and also influxQL.
 For a quick setup with influx running as a container, you can set it up with automatic dbrp mapping by setting following environment variables:
