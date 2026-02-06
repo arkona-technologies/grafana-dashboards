@@ -1,0 +1,2486 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_BLADERUNNER",
+      "label": "bladerunner",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__elements": {
+    "FEioZHgnz": {
+      "name": "PTP / Genlock State",
+      "uid": "FEioZHgnz",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_BLADERUNNER}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisPlacement": "auto",
+              "fillOpacity": 70,
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineWidth": 0,
+              "spanNulls": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "Calibrated": {
+                    "color": "green",
+                    "index": 0
+                  },
+                  "FreeRun": {
+                    "color": "yellow",
+                    "index": 1
+                  },
+                  "Uncalibrated": {
+                    "color": "red",
+                    "index": 2
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "alignValue": "left",
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "mergeValues": true,
+          "rowHeight": 0.9,
+          "showValue": "auto",
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.0.0",
+        "targets": [
+          {
+            "alias": "Genlock $tag_ip #$tag_instances",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "instances"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "genlock.instances",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"state\" FROM \"genlock.instances.lanes.video_f50_ish\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"ip\"",
+            "rawQuery": false,
+            "refId": "genlock",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "PTP Clock $tag_ip",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "p_t_p_clock",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "ptp clock",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "Genlock $tag_ip #$tag_instances",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "instances"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "genlock.instances",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"state\" FROM \"genlock.instances.lanes.video_f50_ish\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"ip\"",
+            "rawQuery": false,
+            "refId": "genlock source",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "t_src_status"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          }
+        ],
+        "title": "PTP / Genlock State",
+        "type": "state-timeline"
+      }
+    },
+    "X4LUnHg7z": {
+      "name": "RTP Receiver - Consecutive Errors",
+      "uid": "X4LUnHg7z",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_BLADERUNNER}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "stepAfter",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "links": [],
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "8.0.0",
+        "targets": [
+          {
+            "alias": "",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "_Mt57O3Gk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "video_receivers"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "r_t_p_receiver.video_receivers.video_specific.error_counters.linenr_2110_error.consec_err_count",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"consec_err_count\" FROM \"r_t_p_receiver.video_receivers.video_specific.error_counters.linenr_2110_error\",\"r_t_p_receiver.video_receivers.video_specific.error_counters.offset_2110_error\",\"r_t_p_receiver.video_receivers.video_specific.error_counters.audio_2022_6_deemb_read_overflow\",\"r_t_p_receiver.video_receivers.video_specific.error_counters.audio_2022_6_deemb_read_underflow\",\"r_t_p_receiver.video_receivers.video_specific.error_counters.mpacket_error\",\"r_t_p_receiver.video_receivers.generic.error_counters.rx_error\",\"r_t_p_receiver.video_receivers.generic.error_counters.premature_read\",\"r_t_p_receiver.video_receivers.generic.error_counters.liveness_timeout\",\"r_t_p_receiver.video_receivers.generic.error_counters.phase_mismatch\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"video_receivers\" fill(null)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "consec_err_count"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "condition": "AND",
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "_Mt57O3Gk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "video_receivers"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "r_t_p_receiver.video_receivers.video_specific.error_counters.linenr_2110_error.consec_err_count",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"consec_err_count\" FROM \"r_t_p_receiver.audio_receivers.audio_specific.error_counters.linenr_2110_error\",\"r_t_p_receiver.audio_receivers.audio_specific.error_counters.offset_2110_error\",\"r_t_p_receiver.audio_receivers.audio_specific.error_counters.audio_2022_6_deemb_read_overflow\",\"r_t_p_receiver.audio_receivers.audio_specific.error_counters.audio_2022_6_deemb_read_underflow\",\"r_t_p_receiver.audio_receivers.audio_specific.error_counters.mpacket_error\",\"r_t_p_receiver.audio_receivers.generic.error_counters.rx_error\",\"r_t_p_receiver.audio_receivers.generic.error_counters.premature_read\",\"r_t_p_receiver.audio_receivers.generic.error_counters.liveness_timeout\",\"r_t_p_receiver.audio_receivers.generic.error_counters.phase_mismatch\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"audio_receivers\" fill(null)",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "consec_err_count"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "condition": "AND",
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "RTP Receiver - Consecutive Errors",
+        "type": "timeseries"
+      }
+    },
+    "6MH0GHR7z": {
+      "name": "RTP Receiver - Standards",
+      "uid": "6MH0GHR7z",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_BLADERUNNER}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisPlacement": "auto",
+              "fillOpacity": 70,
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineWidth": 0,
+              "spanNulls": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "-": {
+                    "color": "red",
+                    "index": 2
+                  }
+                },
+                "type": "value"
+              },
+              {
+                "options": {
+                  "pattern": "^HD2160.*",
+                  "result": {
+                    "color": "blue",
+                    "index": 0
+                  }
+                },
+                "type": "regex"
+              },
+              {
+                "options": {
+                  "pattern": "^HD1080.*",
+                  "result": {
+                    "color": "orange",
+                    "index": 1
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "alignValue": "left",
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "mergeValues": true,
+          "rowHeight": 0.9,
+          "showValue": "auto",
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.2.1",
+        "targets": [
+          {
+            "alias": "receiver #$tag_video_receivers",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "video_receivers"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "r_t_p_receiver.video_receivers.media_specific.output.video",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "standard"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          }
+        ],
+        "title": "RTP Receiver - Standards",
+        "type": "state-timeline"
+      }
+    },
+    "JftHfLy7k": {
+      "name": "Network - Traffic Rx Tx",
+      "uid": "JftHfLy7k",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_BLADERUNNER}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "stepBefore",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bps"
+          },
+          "overrides": []
+        },
+        "maxDataPoints": 250,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "right",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "8.0.0",
+        "targets": [
+          {
+            "alias": "$tag_ip rx octets",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.ports.aggregate_traffic_statistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx_payload_octetsok.bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_ip tx octets",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.ports.aggregate_traffic_statistics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "tx_payload_octetsok.bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_ip tx_all_streams",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.ports.fpga_lane_statistics.tx_all_streams",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_ip rx_streams",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.rx_streams",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_ip rx octets",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.ports.aggregate_traffic_statistics.rx_payload_octetsok",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_ip tx octets",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "xk_4-MKVk"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "network_interfaces.ports.aggregate_traffic_statistics.tx_payload_octetsok",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+            "rawQuery": false,
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bytes_per_sec"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ip",
+                "operator": "=~",
+                "value": "/^$blades$/"
+              }
+            ]
+          }
+        ],
+        "title": "Network - Traffic Rx Tx",
+        "type": "timeseries"
+      }
+    }
+  },
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.3.1"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "panels": [
+        {
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 25,
+          "libraryPanel": {
+            "name": "PTP / Genlock State",
+            "uid": "FEioZHgnz"
+          },
+          "title": "PTP / Genlock State"
+        }
+      ],
+      "title": "PTP",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 38,
+      "panels": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "fillOpacity": 70,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineWidth": 0,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "A": {
+                      "color": "purple",
+                      "index": 1
+                    },
+                    "B": {
+                      "color": "blue",
+                      "index": 0
+                    },
+                    "Empty": {
+                      "color": "text",
+                      "index": 2
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  }
+                ]
+              },
+              "unit": "string"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 36,
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "mergeValues": true,
+            "rowHeight": 0.9,
+            "showValue": "auto",
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "Session $tag_sessions track",
+              "groupBy": [
+                {
+                  "params": [
+                    "sessions::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "r_t_p_receiver.sessions.last_accepted_track",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "track"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip::tag",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ],
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              }
+            },
+            {
+              "alias": "Session $tag_sessions Version",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "sessions::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "r_t_p_receiver.sessions.last_accepted_track",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "controller_version"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip::tag",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ]
+            }
+          ],
+          "title": "Last Accepted Track",
+          "type": "state-timeline"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "fillOpacity": 70,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineWidth": 0,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "A": {
+                      "color": "purple",
+                      "index": 1
+                    },
+                    "B": {
+                      "color": "blue",
+                      "index": 0
+                    },
+                    "Empty": {
+                      "color": "text",
+                      "index": 2
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  }
+                ]
+              },
+              "unit": "string"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 27
+          },
+          "id": 37,
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "mergeValues": true,
+            "rowHeight": 0.9,
+            "showValue": "auto",
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "session #$tag_sessions current",
+              "groupBy": [
+                {
+                  "params": [
+                    "sessions::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "r_t_p_receiver.sessions.used_tracks",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "current_target"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip::tag",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ],
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              }
+            },
+            {
+              "alias": "session #$tag_sessions next",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "sessions::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "r_t_p_receiver.sessions.used_tracks",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "next_target"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip::tag",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ]
+            }
+          ],
+          "title": "Used Tracks",
+          "type": "state-timeline"
+        }
+      ],
+      "title": "Session Tracks",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 31,
+      "panels": [],
+      "title": "Receiver Tracks",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_BLADERUNNER}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "-": {
+                  "color": "text",
+                  "index": 3
+                },
+                "A": {
+                  "color": "purple",
+                  "index": 0
+                },
+                "B": {
+                  "color": "blue",
+                  "index": 1
+                },
+                "Empty": {
+                  "color": "text",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 3
+      },
+      "id": 27,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "A Rec #$tag_audio_receivers",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "audio_receivers::tag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "r_t_p_receiver.audio_receivers.generic.tracks",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"state\" FROM \"genlock.instances.lanes.video_f50_ish\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"ip\"",
+          "rawQuery": false,
+          "refId": "genlock",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "current_target"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "ip",
+              "operator": "=~",
+              "value": "/^$blades$/"
+            }
+          ]
+        }
+      ],
+      "title": "Audio Receiver Tracks",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_BLADERUNNER}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "-": {
+                  "color": "text",
+                  "index": 3
+                },
+                "A": {
+                  "color": "purple",
+                  "index": 0
+                },
+                "B": {
+                  "color": "blue",
+                  "index": 1
+                },
+                "Empty": {
+                  "color": "text",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 3
+      },
+      "id": 28,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "V Rec #$tag_video_receivers",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "video_receivers::tag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "r_t_p_receiver.video_receivers.generic.tracks",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"state\" FROM \"genlock.instances.lanes.video_f50_ish\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY \"ip\"",
+          "rawQuery": false,
+          "refId": "genlock",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "current_target"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "ip",
+              "operator": "=~",
+              "value": "/^$blades$/"
+            }
+          ]
+        }
+      ],
+      "title": "Video Receiver Tracks",
+      "type": "state-timeline"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 39,
+      "panels": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "stepBefore",
+                "lineWidth": 2,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "showValues": false,
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 35,
+          "maxDataPoints": 250,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "v_rec $tag_video_receivers",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ip"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "video_receivers::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "r_t_p_receiver.video_receivers.media_specific.event_counters",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "frame_drop_repeat_events"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ]
+            }
+          ],
+          "title": "Video Receivers Drop Repeat Events",
+          "type": "timeseries"
+        },
+        {
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 18,
+          "libraryPanel": {
+            "name": "RTP Receiver - Consecutive Errors",
+            "uid": "X4LUnHg7z"
+          },
+          "title": "RTP Receiver - Consecutive Errors"
+        }
+      ],
+      "title": "Errors",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_BLADERUNNER}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepBefore",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 32,
+      "maxDataPoints": 250,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Packet_stream $tag_packet_streams",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ip"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "packet_streams::tag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "r_t_p_receiver.packet_streams.traffic_stats",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"tx_all_streams.bytes_per_sec\")  * 8 FROM \"network_interfaces.ports.fpga_lane_statistics\" WHERE (\"ip\" =~ /^$temp_machine$/) AND $timeFilter GROUP BY time($__interval), \"ip\", \"fpga_lane_statistics_index\" fill(none)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_per_sec"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "ip",
+              "operator": "=~",
+              "value": "/^$blades$/"
+            }
+          ]
+        }
+      ],
+      "title": "RTP Receiver Traffic Stats",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_BLADERUNNER}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Video #$tag_video_receivers",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "video_receivers"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "r_t_p_receiver.video_receivers.generic.timing.read_delay.overall",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"r_t_p_receiver.video_receivers.generic.timing.read_delay.overall\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY time($__interval), \"video_receivers\" fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "ip",
+              "operator": "=~",
+              "value": "/^$blades$/"
+            }
+          ]
+        },
+        {
+          "alias": "Audio #$tag_audio_receivers",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "audio_receivers"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "r_t_p_receiver.audio_receivers.generic.timing.read_delay.overall",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"r_t_p_receiver.audio_receivers.generic.timing.read_delay.overall\" WHERE (\"ip\" =~ /^$blades$/) AND $timeFilter GROUP BY time($__interval), \"audio_receivers\" fill(none)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "ip",
+              "operator": "=~",
+              "value": "/^$blades$/"
+            }
+          ]
+        }
+      ],
+      "title": "RTP Receiver - Read Delay",
+      "type": "timeseries"
+    },
+    {
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 21,
+      "libraryPanel": {
+        "uid": "6MH0GHR7z",
+        "name": "RTP Receiver - Standards"
+      }
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 29,
+      "panels": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_BLADERUNNER}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-RdYlGr"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "area"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "max": 2,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": 0
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  },
+                  {
+                    "color": "green",
+                    "value": 2
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 48
+          },
+          "id": 24,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "$tag_ip #$tag_video_receivers",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_BLADERUNNER}"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ip::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "video_receivers::tag"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "r_t_p_receiver.video_receivers.generic.redundancy_levels.nominally_present",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "overall"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "ip::tag",
+                  "operator": "=~",
+                  "value": "/^$blades$/"
+                }
+              ]
+            }
+          ],
+          "title": "Redundancy Rx",
+          "type": "timeseries"
+        },
+        {
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 56
+          },
+          "id": 26,
+          "libraryPanel": {
+            "name": "Network - Traffic Rx Tx",
+            "uid": "JftHfLy7k"
+          },
+          "title": "Network - Traffic Rx Tx"
+        }
+      ],
+      "title": "Additional",
+      "type": "row"
+    }
+  ],
+  "preload": false,
+  "refresh": "10s",
+  "schemaVersion": 42,
+  "tags": [
+    "Blade",
+    "RTP",
+    "Receiver",
+    "Errors"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_BLADERUNNER}"
+        },
+        "definition": "SHOW TAG VALUES  WITH KEY=\"ip\" ",
+        "includeAll": false,
+        "name": "blades",
+        "options": [],
+        "query": "SHOW TAG VALUES  WITH KEY=\"ip\" ",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "RTP Receiver [Blade]",
+  "uid": "jo5qgmv",
+  "version": 16,
+  "weekStart": ""
+}
